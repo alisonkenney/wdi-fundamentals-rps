@@ -42,9 +42,9 @@ function getWinner(playerMove,computerMove) {
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     if (computerMove === getPlayerMove) {
         winner = 'tie';
-    } else if ((computerMove = 'rock' && playerMove = 'scissors')||(computerMove = 'paper' && playerMove = 'rock')||(computerMove = 'scissors' && playerMove = 'paper')) {
+    } else if ((computerMove == 'rock' && playerMove == 'scissors')||(computerMove == 'paper' && playerMove == 'rock')||(computerMove == 'scissors' && playerMove == 'paper')) {
         winner = 'computer';
-    } else if ((computerMove = 'scissors' && playerMove = 'rock')||(computerMove = 'rock' && playerMove = 'paper')||(computerMove = 'paper' && playerMove = 'scissors')) {
+    } else if ((computerMove == 'scissors' && playerMove == 'rock')||(computerMove == 'rock' && playerMove == 'paper')||(computerMove == 'paper' && playerMove == 'scissors')) {
         winner = 'player';
     }
     return winner;
@@ -56,6 +56,31 @@ function playToFive() {
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
+    while ((playerWins < 5) && (computerWins < 5)) {
+      var playerMove = getPlayerMove();
+      var computerMove = getComputerMove();
+      var winner = getWinner(playerMove,computerMove);
+
+      if (winner==='player') {
+        playerWins++;
+      }
+      else if (winner==='computer') {
+        computerWins++;
+      }
+      else if (winner==='tie') {
+        console.log('Draw - play again!');
+      }
+
+      console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
+      console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
+    }
+    if (computerWins == 5) {
+        console.log('Computer Wins!');
+    }else if (playerWins == 5) {
+        console.log('Player Wins!');
+    }
     return [playerWins, computerWins];
 }
+
+playToFive(); 
 
